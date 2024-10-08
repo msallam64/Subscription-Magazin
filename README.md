@@ -1,18 +1,22 @@
-# Salesforce DX Project: Next Steps
+# Salesforce Subscription Management
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+This project implements a subscription management system in Salesforce using Lightning Web Components (LWC) and Apex controllers.
 
-## How Do You Plan to Deploy Your Changes?
+## Components
+### 1. Custom Lookup Component
+- **Purpose**: Provides a dynamic lookup field to search for Account or Product records.
+- **Files**:
+  - `customLookup.js`
+  - `customLookup.html`
+  - `customLookup.js-meta.xml`
+- **Apex Controller**: `CustomLookupController.cls`
+  - Handles search and fetching of default records.
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
-
-## Configure Your Salesforce DX Project
-
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+### 2. Subscription Component
+- **Purpose**: Allows users to create a new subscription tied to Account and Product.
+- **Files**:
+  - `subscriptionComponent.js`
+  - `subscriptionComponent.html`
+  - `subscriptionComponent.js-meta.xml`
+- **Apex Service**: `SubscriptionService.cls`
+  - Handles the subscription creation logic, including duplicate prevention.
