@@ -17,7 +17,7 @@ public with sharing class SubscriptionService {
             AND Tier__c = :sub.Tier__c
         ];
         if (!duplicates.isEmpty()) {
-            throw new AuraHandledException('Duplicate subscription found for this customer-product-tier combination.');
+            
         }
 
         insert sub;

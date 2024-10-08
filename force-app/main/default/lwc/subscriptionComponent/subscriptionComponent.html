@@ -1,12 +1,8 @@
 <template>
     <lightning-card title="Create Subscription" icon-name="custom:custom14">
-        <!-- First Screen for Form Input -->
         <template if:true={isFirstScreen}>
-            <!-- Added margin and padding for the first screen -->
             <div class="slds-box slds-m-around_medium slds-p-around_medium">
                 <lightning-record-edit-form object-api-name="Subscription__c">
-                    
-                    <!-- Create a responsive grid layout for the input fields -->
                     <div class="slds-grid slds-wrap slds-gutters">
                         <!-- Account Lookup -->
                         <div class="slds-col slds-size_1-of-2 slds-p-around_small">
@@ -99,7 +95,6 @@
         <!-- Second Screen for Summary -->
         <template if:true={isSecondScreen}>
             <lightning-card title="Subscription Summary" class="slds-m-around_medium">
-                <!-- Display selected values in an enhanced summary box with better structure -->
                 <div class="slds-box slds-theme_default slds-p-around_medium slds-m-bottom_medium">
                     <p class="slds-text-heading_small slds-m-bottom_small"><b>Account:</b> {accountName}</p>
                     <p class="slds-text-heading_small slds-m-bottom_small"><b>Product:</b> {productName}</p>
@@ -109,7 +104,7 @@
                     <p class="slds-text-heading_small"><b>Description:</b> {description}</p>
                 </div>
 
-                <!-- Back and Confirm Buttons, centered and spaced apart -->
+                <!-- Back and Confirm Buttons -->
                 <div class="slds-align_absolute-center slds-m-top_medium">
                     <lightning-button
                         class="slds-m-right_small"

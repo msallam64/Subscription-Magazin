@@ -15,7 +15,7 @@ public with sharing class CustomLookupController {
     }
 
     // Method to fetch lookup default value
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static sObject fetchDefaultRecord(string recordId, string sObjectApiName) {
         string sRecId = recordId;
         string sQuery = 'Select Id,Name From ' + sObjectApiName + ' Where Id = : sRecId LIMIT 1';

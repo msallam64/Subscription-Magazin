@@ -1,7 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { CurrentPageReference } from 'lightning/navigation';
-import { NavigationMixin } from 'lightning/navigation';
 import createSubscription from '@salesforce/apex/SubscriptionService.createSubscription';
 
 export default class SubscriptionComponent extends LightningElement {
@@ -35,9 +34,7 @@ export default class SubscriptionComponent extends LightningElement {
         // If on an account record page, automatically populate the Account lookup
         if (objectApiName === 'Account' && recordId) {
             this.selectedAccountId = recordId;
-    
-            // Fetch the account record by Id and populate the account name
-            fetchDefaultRecord({ recordId: this.selectedAccountId, sObjectApiName: 'Account' })
+                fetchDefaultRecord({ recordId: this.selectedAccountId, sObjectApiName: 'Account' })
                 .then(result => {
                     if (result) {
                         this.accountName = result.Name;
@@ -48,12 +45,9 @@ export default class SubscriptionComponent extends LightningElement {
                 });
         }
     
-        // If on a product record page, automatically populate the Product lookup
         if (objectApiName === 'Product2' && recordId) {
             this.selectedProductId = recordId;
-    
-            // Fetch the product record by Id and populate the product name
-            fetchDefaultRecord({ recordId: this.selectedProductId, sObjectApiName: 'Product2' })
+                fetchDefaultRecord({ recordId: this.selectedProductId, sObjectApiName: 'Product2' })
                 .then(result => {
                     if (result) {
                         this.productName = result.Name;
@@ -65,7 +59,6 @@ export default class SubscriptionComponent extends LightningElement {
         }
     }
     
-
     // Options for Combobox
     get subscriptionTypeOptions() {
         return [

@@ -26,7 +26,7 @@ export default class CustomLookup extends LightningElement {
                 .then((result) => {
                     if (result) {
                         this.selectedRecord = result;
-                        this.handelSelectRecordHelper(); // Show selected record on UI
+                        this.handelSelectRecordHelper();
                     }
                 })
                 .catch((error) => {
