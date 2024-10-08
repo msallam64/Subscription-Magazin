@@ -1,6 +1,6 @@
 # Salesforce Subscription Management
 
-This project implements a subscription management system in Salesforce using Lightning Web Components (LWC) and Apex controllers.
+This project implements a subscription management App in Salesforce using Lightning Web Components (LWC) and Apex controllers.
 
 ## Components
 ### 1. Custom Lookup Component
