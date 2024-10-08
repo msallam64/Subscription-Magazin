@@ -1,0 +1,130 @@
+<template>
+    <lightning-card title="Create Subscription" icon-name="custom:custom14">
+        <!-- First Screen for Form Input -->
+        <template if:true={isFirstScreen}>
+            <!-- Added margin and padding for the first screen -->
+            <div class="slds-box slds-m-around_medium slds-p-around_medium">
+                <lightning-record-edit-form object-api-name="Subscription__c">
+                    
+                    <!-- Create a responsive grid layout for the input fields -->
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <!-- Account Lookup -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+
+                            <c-custom-lookup
+                                icon-name="standard:account"
+                                s-object-api-name="Account"
+                                label="Account"
+                                default-record-id={selectedAccountId}
+                                onlookupupdate={lookupRecord}
+                                placeholder="Search Account..."
+                                data-type="account"
+                            ></c-custom-lookup>
+                        </div>
+
+                        <!-- Product Lookup -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+
+                            <c-custom-lookup
+                                icon-name="standard:product2"
+                                s-object-api-name="Product2"
+                                label="Product"
+                                default-record-id={selectedProductId}
+                                onlookupupdate={lookupRecord}
+                                placeholder="Search Product..."
+                                data-type="product"
+                            ></c-custom-lookup>
+                        </div>
+
+                        <!-- Subscription Type -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <lightning-combobox
+                                name="subscriptionType"
+                                label="Subscription Type"
+                                value={subscriptionType}
+                                placeholder="Select Subscription Type"
+                                options={subscriptionTypeOptions}
+                                onchange={handleInputChange}>
+                            </lightning-combobox>
+                        </div>
+
+                        <!-- Tier -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <lightning-combobox
+                                name="tier"
+                                label="Tier"
+                                value={tier}
+                                placeholder="Select Tier"
+                                options={tierOptions}
+                                onchange={handleInputChange}>
+                            </lightning-combobox>
+                        </div>
+
+                        <!-- Value -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <lightning-input
+                                label="Value"
+                                type="number"
+                                name="value"
+                                value={value}
+                                onchange={handleInputChange}
+                                required>
+                            </lightning-input>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <lightning-textarea
+                                label="Description"
+                                name="description"
+                                value={description}
+                                onchange={handleInputChange}>
+                            </lightning-textarea>
+                        </div>
+                    </div>
+
+                    <!-- Next Button, centered -->
+                    <div class="slds-align_absolute-center slds-m-top_large">
+                        <lightning-button
+                            class="slds-m-top_medium"
+                            label="Next"
+                            onclick={handleNext}
+                            variant="brand"
+                        ></lightning-button>
+                    </div>
+                </lightning-record-edit-form>
+            </div>
+        </template>
+
+        <!-- Second Screen for Summary -->
+        <template if:true={isSecondScreen}>
+            <lightning-card title="Subscription Summary" class="slds-m-around_medium">
+                <!-- Display selected values in an enhanced summary box with better structure -->
+                <div class="slds-box slds-theme_default slds-p-around_medium slds-m-bottom_medium">
+                    <p class="slds-text-heading_small slds-m-bottom_small"><b>Account:</b> {accountName}</p>
+                    <p class="slds-text-heading_small slds-m-bottom_small"><b>Product:</b> {productName}</p>
+                    <p class="slds-text-heading_small slds-m-bottom_small"><b>Subscription Type:</b> {subscriptionType}</p>
+                    <p class="slds-text-heading_small slds-m-bottom_small"><b>Tier:</b> {tier}</p>
+                    <p class="slds-text-heading_small slds-m-bottom_small"><b>Value:</b> {value}</p>
+                    <p class="slds-text-heading_small"><b>Description:</b> {description}</p>
+                </div>
+
+                <!-- Back and Confirm Buttons, centered and spaced apart -->
+                <div class="slds-align_absolute-center slds-m-top_medium">
+                    <lightning-button
+                        class="slds-m-right_small"
+                        label="Back"
+                        onclick={handleBack}
+                        variant="neutral"
+                    ></lightning-button>
+
+                    <lightning-button
+                        label="Confirm"
+                        onclick={handleSubmit}
+                        variant="brand"
+                    ></lightning-button>
+                </div>
+            </lightning-card>
+        </template>
+    </lightning-card>
+</template>
