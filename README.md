@@ -1,4 +1,4 @@
-# Salesforce Subscription Management
+# Salesforce LWC Subscription Management
 
 This project implements a subscription management App in Salesforce using Lightning Web Components (LWC) and Apex controllers.
 
