@@ -22,7 +22,7 @@ This project implements a subscription management system in Salesforce using Lig
   - Handles the subscription creation logic, including duplicate prevention.
 
 ## Create Subscription UI
-![Create Subscription](./assets/create_subscription.jpg)
+![Create Subscription](./create_subscription.png)
 
 ## Subscription Summary UI
-![Create Subscription](./assets/.jpg)
+![Create Subscription](./summary.png)
