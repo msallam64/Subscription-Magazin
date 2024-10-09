@@ -9,6 +9,19 @@
         <target>lightning__RecordAction</target>
         <target>lightning__FlowScreen</target>
     </targets>
-
     
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordAction">
+            <objects>
+                <object>Account</object>
+                <object>Product2</object>
+            </objects>
+        </targetConfig>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Account</object>
+                <object>Product2</object>
+            </objects>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>
