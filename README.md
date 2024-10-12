@@ -22,7 +22,7 @@ This project implements a subscription management App in Salesforce using Lightn
   - Handles the subscription creation logic, including duplicate prevention.
 
 ## Create Subscription UI
-![Create Subscription](./Create Subscription1.jpg)
+![Create Subscription](./create_subscription1.png)
 
 ## Subscription Summary UI
 ![Create Subscription](./summary.png)
