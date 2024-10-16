@@ -1,8 +1,8 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track, wire,api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { CurrentPageReference } from 'lightning/navigation';
 import createSubscription from '@salesforce/apex/SubscriptionService.createSubscription';
-
+import fetchDefaultRecord from '@salesforce/apex/CustomLookupController.fetchDefaultRecord';
 export default class SubscriptionComponent extends LightningElement {
     @track isFirstScreen = true;
     @track isSecondScreen = false;
@@ -22,15 +22,61 @@ export default class SubscriptionComponent extends LightningElement {
     @track productResults = [];
     @track selectedAccountId = '';
     @track selectedProductId = '';
-
-    @wire(CurrentPageReference)
+    
+    @api recordId;
     pageRef;
+    @wire(CurrentPageReference)
+    wiredPageRef(pageRef) {
+        if (pageRef) {
+            this.pageRef = pageRef;
+            this.handleAutoPopulate();  // Auto-populate only when pageRef is available
+        }
+    }
+
+
+    handleAutoPopulate() {
+        const recordId = this.recordId;
+        const objectApiName = this.pageRef?.attributes?.objectApiName;
+    
+        console.log('recordId:', recordId);  
+        console.log('objectApiName:', objectApiName); 
+
+        if (objectApiName === 'Account' && recordId) {
+            this.selectedAccountId = recordId;
+            fetchDefaultRecord({ recordId: this.selectedAccountId, sObjectApiName: 'Account' })
+                .then(result => {
+                    if (result) {
+                        this.accountName = result.Name;
+                        this.template.querySelector('c-custom-lookup').lookupUpdatehandler(result);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching Account:', error);
+                });
+        }
+    
+        if (objectApiName === 'Product2' && recordId) {
+            this.selectedProductId = recordId;
+            fetchDefaultRecord({ recordId: this.selectedProductId, sObjectApiName: 'Product2' })
+                .then(result => {
+                    if (result) {
+                        this.productName = result.Name;
+                        this.template.querySelector('c-custom-lookup').lookupUpdatehandler(result);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching Product:', error);
+                });
+        }
+    }
+    
 
     connectedCallback() {
         // Check if the LWC is on a record page
-        const recordId = this.pageRef?.state?.recordId;
+        const recordId = this.recordId;
         const objectApiName = this.pageRef?.attributes?.objectApiName;
     
+        console.log('recordId: '+recordId);
         // If on an account record page, automatically populate the Account lookup
         if (objectApiName === 'Account' && recordId) {
             this.selectedAccountId = recordId;

@@ -17,11 +17,19 @@ public with sharing class CustomLookupController {
     // Method to fetch lookup default value
     @AuraEnabled(cacheable=true)
     public static sObject fetchDefaultRecord(string recordId, string sObjectApiName) {
+
+        String query = 'SELECT Id, Name FROM ' + sObjectApiName + ' WHERE Id = :recordId LIMIT 1';
+        List<sObject> results = Database.query(query);
+        if (!results.isEmpty()) {
+            return results[0];
+        }
+        return null;        
+/** 
         string sRecId = recordId;
         string sQuery = 'Select Id,Name From ' + sObjectApiName + ' Where Id = : sRecId LIMIT 1';
         for (sObject obj : database.query(sQuery)) {
             return obj;
         }
-        return null;
+        return null;*/
     }
 }

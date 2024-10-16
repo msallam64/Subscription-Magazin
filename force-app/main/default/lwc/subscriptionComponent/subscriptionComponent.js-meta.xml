@@ -9,8 +9,15 @@
         <target>lightning__RecordAction</target>
         <target>lightning__FlowScreen</target>
     </targets>
+
     
     <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="recordId" type="String" label="Your Parameter Label" description="Description of your parameter"/>
+        </targetConfig>
+    
+    
+    
         <targetConfig targets="lightning__RecordAction">
             <objects>
                 <object>Account</object>
